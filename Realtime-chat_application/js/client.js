@@ -23,22 +23,22 @@ const append = (message, position) => {
 const name = prompt("Enter your name to join");
 socket.emit('new-user-joined', name);
 
-// Naya user join vayepachi, receive the event from the server.
+// new user join the chat, receive the event from the server.
 socket.on('user-joined', name => {
   append(`${name} joined the chat`, 'right');
 });
 
-// sever le messange send garyo vane receive it
+
 socket.on('receive', data => {
   append(`${data.name}: ${data.message}`, 'left');
 });
 
-// userle chat leave garchha vane, append the info to the container
+// if user leave the chat
 socket.on('left', name => {
   append(`${name} left the chat`, 'left');
 });
 
-// Form submit vayo vane server lai message send garchha
+// message submit
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   const message = messageInput.value;
